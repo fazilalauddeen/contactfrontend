@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="form-wrapper mat-elevation-z4">
+        <h2>Contact Form</h2>
+        <form #userForm="ngForm" (ngSubmit)="saveUser()">
+            <div class="form-row">
+                <mat-form-field class="form-field">
+                    <mat-label>First Name</mat-label>
+                    <input matInput type="text" name="firstname" [(ngModel)]="user.firstname" required>
+                    <mat-error *ngIf="userForm.controls['firstname'].invalid && (userForm.controls['firstname'].dirty || userForm.controls['firstname'].touched)">
+                        First name is required.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-field">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput type="text" name="lastname" [(ngModel)]="user.lastname" required>
+                    <mat-error *ngIf="userForm.controls['lastname'].invalid && (userForm.controls['lastname'].dirty || userForm.controls['lastname'].touched)">
+                        Last name is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+                <mat-form-field class="form-field">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" name="email" [(ngModel)]="user.email" required email>
+                    <mat-error *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+                        Please enter a valid email address.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-field">
+                    <mat-label>Mobile</mat-label>
+                    <input matInput type="text" name="mobile" [(ngModel)]="user.mobile" required pattern="[0-9]{10}">
+                    <mat-error *ngIf="userForm.controls['mobile'].invalid && (userForm.controls['mobile'].dirty || userForm.controls['mobile'].touched)">
+                        Mobile number must contain exactly 10 digits.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+                <mat-form-field class="form-field">
+                    <mat-label>Address</mat-label>
+                    <input matInput name="address" [(ngModel)]="user.address" rows="3" />
+                </mat-form-field>
+
+                <mat-form-field class="form-field">
+                    <mat-label>Tags</mat-label>
+                    <mat-select name="tags" [(ngModel)]="user.tags" required>
+                        <mat-option value="Work">Work</mat-option>
+                        <mat-option value="Personal">Personal</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="userForm.controls['tags'].invalid && (userForm.controls['tags'].dirty || userForm.controls['tags'].touched)">
+                        Tags are required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-actions">
+                <button mat-raised-button color="primary" type="submit">Add</button>
+                <button mat-raised-button color="accent" type="button" (click)="reset()">Reset</button>
+                <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
